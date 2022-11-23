@@ -12,8 +12,8 @@ port = 3000 # the port number of the instrument service
 #Epics Stuff
 prefix = 'X05LA-ES-SENSIC:'
 pvdb = {
-    'POSX' :	{'TYPE' : 'int', 'scan' : 0.2, 'unit' : 'um', 'prec' : 2 },
-    'POSY' :	{'TYPE' : 'int', 'scan' : 0.2, 'unit' : 'um', 'prec' : 2 },
+    'POSX' :	{'TYPE' : 'int', 'scan' : 0.2, 'unit' : 'um', 'prec' : 10 },
+    'POSY' :	{'TYPE' : 'int', 'scan' : 0.2, 'unit' : 'um', 'prec' : 10 },
     'CUR1' :	{'TYPE' : 'int', 'scan' : 0.2, 'unit' : 'A', 'prec' : 10 },
     'CUR2' :	{'TYPE'	: 'int', 'scan' : 0.2, 'unit' : 'A', 'prec' : 10 },
     'CUR3' :	{'TYPE' : 'int', 'scan' : 0.2, 'unit' : 'A', 'prec' : 10},
@@ -35,12 +35,12 @@ def SocketConnect():
     except socket.error:
         print ('failed to connect to ip ' + remote_ip)
     try:
-	s.sendall(b'setdac:50\r\n')
-	s.sendall(b'setgainmode:8;4;4;4\r\n')
+	s.sendall(b'setdac:50')
+	s.sendall(b'setgainmode:8;4;2;2')
     except socket.error:
 	print ('Failed to init amplifier')
     try:
-	s.sendall(b'readgainmode\r\n')
+	s.sendall(b'readgainmode')
 	time.sleep(0.5)
 	print(s.recv(4096))
     except socket.error:
@@ -54,7 +54,7 @@ def SocketQuery(Sock, cmd):
     try :
         #Send cmd string
         Sock.sendall(cmd)
-        Sock.sendall(b'\r\n')
+        #Sock.sendall(b'\r\n')
         time.sleep(0.15)
     except socket.error:
         #Send failed
@@ -72,12 +72,15 @@ def SocketClose(Sock):
 s = SocketConnect()
 p = re.compile(r'[-+]?\d*\.\d+|\d+')
 meanValues = [0,0,0,0,0]
+pos = [0,0]
 
 def getData(s):
-	return str(SocketQuery(s, b'startacqc:50'))
+	temp = str(SocketQuery(s, b'startacqc:50'))
+	#print(temp)
+	return temp
 
 def getMeanCurrent(dataString, p):
-	global meanValues
+	global meanValues,pos
 
 	arr2 = []
 	arr3 = []
@@ -100,6 +103,8 @@ def getMeanCurrent(dataString, p):
 	if len(arr4) > 0: currMean[2] = sum(arr4) / len(arr4)
 	if len(arr5) > 0: currMean[3] = sum(arr5) / len(arr5)
 	currMean[4] = currMean[0] + currMean[1] + currMean[2] + currMean[3]
+	pos[0] = ((currMean[0]+currMean[2])-(currMean[1]+currMean[3]))/currMean[4]
+	pos[1] = ((currMean[0]+currMean[1])-(currMean[2]+currMean[3]))/currMean[4]
 
 	meanValues = currMean
 
@@ -114,8 +119,8 @@ class myDriver(Driver):
         elif reason == 'CUR3': value = meanValues[2]
         elif reason == 'CUR4': value = meanValues[3]
         elif reason == 'SUM':  value = meanValues[4]
-        elif reason == 'POSX': value = meanValues[0]
-        elif reason == 'POSY': value = meanValues[0]
+        elif reason == 'POSX': value = pos[0]
+        elif reason == 'POSY': value = pos[1]
         else:
 		value = self.getParam(reason)
 	#print(value)
