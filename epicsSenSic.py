@@ -3,6 +3,7 @@ from pcaspy import Driver, SimpleServer
 import socket # for sockets
 import time
 import re
+import sys
 
 remote_ip = "129.129.130.210" # should match the instrument IP address
 port = 3000 # the port number of the instrument service
@@ -11,19 +12,20 @@ port = 3000 # the port number of the instrument service
 #Epics Stuff
 prefix = 'X05LA-ES-SENSIC:'
 pvdb = {
-    'POSX' :	{'TYPE' : 'int', 'scan' : 0.1, 'unit' : 'um', 'prec' : 2 },
-    'POSY' :	{'TYPE' : 'int', 'scan' : 0.1, 'unit' : 'um', 'prec' : 2 },
-    'CUR1' :	{'TYPE' : 'int', 'scan' : 0.1, 'unit' : 'A', 'prec' : 10 },
-    'CUR2' :	{'TYPE'	: 'int', 'scan' : 0.1, 'unit' : 'A', 'prec' : 10 },
-    'CUR3' :	{'TYPE' : 'int', 'scan' : 0.1, 'unit' : 'A', 'prec' : 10},
-    'CUR4' :	{'TYPE' : 'int', 'scan' : 0.1, 'unit' : 'A', 'prec' : 10},
-    'SUM'  :	{'TYPE' : 'int', 'scan' : 0.1, 'unit' : 'A', 'prec' : 10},
+    'POSX' :	{'TYPE' : 'int', 'scan' : 0.2, 'unit' : 'um', 'prec' : 2 },
+    'POSY' :	{'TYPE' : 'int', 'scan' : 0.2, 'unit' : 'um', 'prec' : 2 },
+    'CUR1' :	{'TYPE' : 'int', 'scan' : 0.2, 'unit' : 'A', 'prec' : 10 },
+    'CUR2' :	{'TYPE'	: 'int', 'scan' : 0.2, 'unit' : 'A', 'prec' : 10 },
+    'CUR3' :	{'TYPE' : 'int', 'scan' : 0.2, 'unit' : 'A', 'prec' : 10},
+    'CUR4' :	{'TYPE' : 'int', 'scan' : 0.2, 'unit' : 'A', 'prec' : 10},
+    'SUM'  :	{'TYPE' : 'int', 'scan' : 0.2, 'unit' : 'A', 'prec' : 10},
 }
 
 def SocketConnect():
     try:
         #create an AF_INET, STREAM socket (TCP)
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	print('Socket connected')
     except socket.error:
         print ('Failed to create socket.')
         sys.exit();
@@ -32,14 +34,28 @@ def SocketConnect():
         s.connect((remote_ip , port))
     except socket.error:
         print ('failed to connect to ip ' + remote_ip)
+    try:
+	s.sendall(b'setdac:50\r\n')
+	s.sendall(b'setgainmode:8;4;4;4\r\n')
+    except socket.error:
+	print ('Failed to init amplifier')
+    try:
+	s.sendall(b'readgainmode\r\n')
+	time.sleep(0.5)
+	print(s.recv(4096))
+    except socket.error:
+	print('No gain mode read')
+
+
     return s
+
 
 def SocketQuery(Sock, cmd):
     try :
         #Send cmd string
         Sock.sendall(cmd)
-        #Sock.sendall(b'\n')
-        time.sleep(0.1)
+        Sock.sendall(b'\r\n')
+        time.sleep(0.15)
     except socket.error:
         #Send failed
         print ('Send failed')
@@ -125,5 +141,5 @@ if __name__ == '__main__':
     # process CA transactions
     while True:
 	getMeanCurrent(getData(s),p)
-        server.process(0.1)
+        server.process(0.2)
 
