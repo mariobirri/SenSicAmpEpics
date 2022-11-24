@@ -20,13 +20,11 @@ pvdb = {
 
 
 class myDriver(Driver):
-    global meanValues,s,p
-    #print(getMeanCurrent(getData(s),p))
+
     def  __init__(self):
         super(myDriver, self).__init__()
 
     def read(self, reason):
-	#print(getMeanCurrent(getData(s),p))
         if reason == 'CUR1': value = data.mean1
         elif reason == 'CUR2': value = data.mean2 
         elif reason == 'CUR3': value = data.mean3 
@@ -35,8 +33,9 @@ class myDriver(Driver):
         elif reason == 'POSX': value = 0
         elif reason == 'POSY': value = 0
         elif reason == 'BIASSTATE': 0
-        else:
-            value = self.getParam(reason)
+        else: value = self.getParam(reason)
+        print(reason)
+        print(value)
         return value
 
 
@@ -57,5 +56,5 @@ if __name__ == '__main__':
 
     # process CA transactions
     while True:
-	    server.process(0.5)
+	    server.process(0.1)
 
