@@ -19,6 +19,10 @@ pvdb = {
     'CUR3' :	{'TYPE' : 'int', 'scan' : 0.2, 'unit' : 'A', 'prec' : 10},
     'CUR4' :	{'TYPE' : 'int', 'scan' : 0.2, 'unit' : 'A', 'prec' : 10},
     'SUM'  :	{'TYPE' : 'int', 'scan' : 0.2, 'unit' : 'A', 'prec' : 10},
+    'BIAS'  :   {'TYPE' : 'int',  'unit' : 'V', 'prec' : 2},
+    'BIASON'  :   {'TYPE' : 'int', 'scan' : 0.2, 'unit' : ' ', 'prec' : 0},
+    'BIASOFF'  :   {'TYPE' : 'int', 'scan' : 0.2, 'unit' : ' ', 'prec' : 0},
+    'BIASSTATE'  :   {'TYPE' : 'char', 'count' : 10},
 }
 
 def SocketConnect():
@@ -41,12 +45,10 @@ def SocketConnect():
 	print ('Failed to init amplifier')
     try:
 	s.sendall(b'readgainmode')
-	time.sleep(0.5)
+	time.sleep(0.05)
 	print(s.recv(4096))
     except socket.error:
 	print('No gain mode read')
-
-
     return s
 
 
@@ -55,12 +57,13 @@ def SocketQuery(Sock, cmd):
         #Send cmd string
         Sock.sendall(cmd)
         #Sock.sendall(b'\r\n')
-        time.sleep(0.15)
+        time.sleep(0.05)
     except socket.error:
         #Send failed
         print ('Send failed')
         sys.exit()
     reply = Sock.recv(4096)
+    #print(reply)
     return reply
 
 def SocketClose(Sock):
@@ -75,63 +78,67 @@ meanValues = [0,0,0,0,0]
 pos = [0,0]
 
 def getData(s):
-	temp = str(SocketQuery(s, b'startacqc:50'))
-	#print(temp)
-	return temp
+	return str(SocketQuery(s, b'startacqf:1'))
 
 def getMeanCurrent(dataString, p):
-	global meanValues,pos
+	global meanValues
 
-	arr2 = []
-	arr3 = []
-	arr4 = []
-	arr5 = []
 	currMean = [0,0,0,0,0]
 
 	# Compile a pattern to capture float values
-
 	vals = [float(j) for j in p.findall(dataString)]  # Convert strings to float
-	for k in range(0, len(vals), 5):
-        	#print(vals[k], vals[k+1], vals[k+2], vals[k+3], vals[k+4])
-        	arr2.append(vals[k+1])
-        	arr3.append(vals[k+2])
-        	arr4.append(vals[k+3])
-        	arr5.append(vals[k+4])
+	#print(vals)
+	try:
+       		#print(vals[k], vals[k+1], vals[k+2], vals[k+3], vals[k+4])
+       		currMean[0] = vals[1]
+       		currMean[1] = vals[2]
+		currMean[2] = vals[3]
+		currMean[3] = vals[4]
+	except: 
+		print('no entry')
 
-	if len(arr2) > 0: currMean[0] = sum(arr2) / len(arr2)
-	if len(arr3) > 0: currMean[1] = sum(arr3) / len(arr3)
-	if len(arr4) > 0: currMean[2] = sum(arr4) / len(arr4)
-	if len(arr5) > 0: currMean[3] = sum(arr5) / len(arr5)
 	currMean[4] = currMean[0] + currMean[1] + currMean[2] + currMean[3]
-	pos[0] = ((currMean[0]+currMean[2])-(currMean[1]+currMean[3]))/currMean[4]
-	pos[1] = ((currMean[0]+currMean[1])-(currMean[2]+currMean[3]))/currMean[4]
-
 	meanValues = currMean
+	return meanValues
+
+def getPos(index):
+	global meanValues, pos
+	if index == 0 and meanValues[4] != 0:
+		pos[0] = ((meanValues[0]+meanValues[2])-(meanValues[1]+meanValues[3]))/meanValues[4]
+		return pos[0]
+	elif index == 1 and meanValues[4] != 0:
+        	pos[1] = ((meanValues[0]+meanValues[1])-(meanValues[2]+meanValues[3]))/meanValues[4]
+		return pos[1]
+	else:
+		return -1
 
 class myDriver(Driver):
-    global meanValues
+    global meanValues,s,p
+    #print(getMeanCurrent(getData(s),p))
     def  __init__(self):
         super(myDriver, self).__init__()
 
     def read(self, reason):
+	#print(getMeanCurrent(getData(s),p))
         if reason == 'CUR1': value = meanValues[0]
-	elif reason == 'CUR2': value = meanValues[1]
-        elif reason == 'CUR3': value = meanValues[2]
+	elif reason == 'CUR2': value = meanValues[1] 
+        elif reason == 'CUR3': value = meanValues[2] 
         elif reason == 'CUR4': value = meanValues[3]
         elif reason == 'SUM':  value = meanValues[4]
-        elif reason == 'POSX': value = pos[0]
-        elif reason == 'POSY': value = pos[1]
+        elif reason == 'POSX': value = getPos(0)
+        elif reason == 'POSY': value = getPos(1)
+	elif reason == 'BIASSTATE': value = SocketQuery(s, b'biasstatus')
         else:
 		value = self.getParam(reason)
-	#print(value)
         return value
 
 
     def write(self, reason, value):
         status = True
 
-        if reason == 'COLOR':
-           print 'new color code is %x' % value
+        if reason == 'BIAS':
+           print 'new bias voltage = %x' % value
+	   SocketQuery(s, b'setbias:' + str(value))
 
         if status:
            self.setParam(reason, value)
@@ -145,6 +152,6 @@ if __name__ == '__main__':
 
     # process CA transactions
     while True:
-	getMeanCurrent(getData(s),p)
-        server.process(0.2)
+	print(getMeanCurrent(getData(s),p))
+        server.process(0.5)
 
