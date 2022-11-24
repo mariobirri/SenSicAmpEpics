@@ -29,6 +29,7 @@ def SocketConnect():
         s.connect((remote_ip, port))
     except socket.error:
         print('failed to connect to ip ' + remote_ip)
+    print('Communication success')
     return s
 
 # Socket send command
