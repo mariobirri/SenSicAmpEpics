@@ -22,3 +22,6 @@ mean2 = 0.0
 mean3 = 0.0
 mean4 = 0.0
 meanSum = 0.0
+
+kx = 1.0
+ky = 1.0

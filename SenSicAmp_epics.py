@@ -14,9 +14,22 @@ pvdb = {
     'SUM'  :	{'TYPE' : 'int', 'scan' : 0.2, 'unit' : 'A', 'prec' : 10},
     'BIAS'  :   {'TYPE' : 'int',  'unit' : 'V', 'prec' : 2},
     'BIASON'  :   {'TYPE' : 'int', 'scan' : 0.2, 'unit' : ' ', 'prec' : 0},
-    'BIASOFF'  :   {'TYPE' : 'int', 'scan' : 0.2, 'unit' : ' ', 'prec' : 0},
     'BIASSTATE'  :   {'TYPE' : 'char', 'count' : 10},
+    'KX'  :	{'TYPE' : 'int', 'scan' : 0.2, 'unit' : ' ', 'prec' : 2},
+    'KY'  :	{'TYPE' : 'int', 'scan' : 0.2, 'unit' : ' ', 'prec' : 2},
 }
+
+def getPosX(valueArr):
+    if valueArr[4] != 0:
+        return data.kx*(((valueArr[0] + valueArr[2])-(valueArr[1] + valueArr[3]))/valueArr[4])
+    else:
+        return 0
+    
+def getPosY(valueArr):
+    if valueArr[4] != 0:
+        return data.ky*(((valueArr[0] + valueArr[1])-(valueArr[2] + valueArr[3]))/valueArr[4])
+    else:
+        return 0
 
 
 class myDriver(Driver):
@@ -30,20 +43,20 @@ class myDriver(Driver):
         elif reason == 'CUR3': value = data.mean3 
         elif reason == 'CUR4': value = data.mean4
         elif reason == 'SUM':  value = data.meanSum
-        elif reason == 'POSX': value = 0
-        elif reason == 'POSY': value = 0
-        elif reason == 'BIASSTATE': 0
+        elif reason == 'POSX': value = getPosX([data.mean1,data.mean2,data.mean3,data.mean4,data.meanSum])
+        elif reason == 'POSY': value = getPosY([data.mean1,data.mean2,data.mean3,data.mean4,data.meanSum])
+        elif reason == 'KX': value = data.kx
+        elif reason == 'KY': value = data.ky
+        elif reason == 'BIASSTATE': value = ''
         else: value = self.getParam(reason)
-        print(reason)
-        print(value)
         return value
 
 
     def write(self, reason, value):
         status = True
 
-        if reason == 'BIAS':
-            print('new bias voltage = %x' % value)
+        if reason == 'KX': data.kx = value
+        elif reason == 'KY': data.ky = value
         if status:
            self.setParam(reason, value)
 
