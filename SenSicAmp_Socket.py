@@ -107,15 +107,20 @@ def getMean(inDataMatrix):
 s = SocketConnect()
 SocketSend(s, data.startAmp)
 SocketRec(s, data.setGain)
+mean1 = 0.0
+mean2 = 0.0
+mean3 = 0.0
+mean4 = 0.0
+meanSum = 0.0
 for i in range(10):
     currentString = SocketRec(s, data.getCurrentString)
     currentData = getDataFromString(currentString)
     data.currents = getAllValsFromData(currentData)
-    data.mean1 = getMean(data.currents[0])
-    data.mean2 = getMean(data.currents[1])
-    data.mean3 = getMean(data.currents[2])
-    data.mean4 = getMean(data.currents[3])
-    data.meanSum = data.mean1 + data.mean2 + data.mean3 + data.mean4
+    mean1 = getMean(data.currents[0])
+    mean2 = getMean(data.currents[1])
+    mean3 = getMean(data.currents[2])
+    mean4 = getMean(data.currents[3])
+    meanSum = mean1 + mean2 + mean3 + mean4
 
 SocketClose(s)
 
