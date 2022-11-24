@@ -112,7 +112,7 @@ mean2 = 0.0
 mean3 = 0.0
 mean4 = 0.0
 meanSum = 0.0
-for i in range(10):
+while True:
     currentString = SocketRec(s, data.getCurrentString)
     currentData = getDataFromString(currentString)
     data.currents = getAllValsFromData(currentData)
