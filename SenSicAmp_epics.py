@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 from pcaspy import Driver, SimpleServer
-import SenSicAmp_data as data
-import SenSicAmp_Socket as socket
+import SenSicAmp_data as data 
 
-
+print(id(data))
 #Epics Stuff
 prefix = 'X05LA-ES-SENSIC:'
 pvdb = {
@@ -40,13 +39,13 @@ class myDriver(Driver):
         super(myDriver, self).__init__()
 
     def read(self, reason):
-        if reason == 'CUR1': value = socket.mean1
-        elif reason == 'CUR2': value = socket.mean2 
-        elif reason == 'CUR3': value = socket.mean3 
-        elif reason == 'CUR4': value = socket.mean4
-        elif reason == 'SUM':  value = socket.meanSum
-        elif reason == 'POSX': value = getPosX([data.mean1,data.mean2,data.mean3,data.mean4,data.meanSum])
-        elif reason == 'POSY': value = getPosY([data.mean1,data.mean2,data.mean3,data.mean4,data.meanSum])
+        if reason == 'CUR1': value = data.mean1
+        elif reason == 'CUR2': value = data.mean2
+        elif reason == 'CUR3': value = data.mean3
+        elif reason == 'CUR4': value = data.mean4
+        elif reason == 'SUM':  value = data.meanSum
+        elif reason == 'POSX': value = getPosX([data.mean1, data.mean2, data.mean3, data.mean4, data.meanSum])
+        elif reason == 'POSY': value = getPosY([data.mean1, data.mean2, data.mean3, data.mean4, data.meanSum])
         elif reason == 'KX': value = data.kx
         elif reason == 'KY': value = data.ky
         elif reason == 'BIASSTATE': value = ''
@@ -71,5 +70,5 @@ if __name__ == '__main__':
 
     # process CA transactions
     while True:
-	    server.process(0.1)
+	server.process(0.1)
 

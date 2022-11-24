@@ -12,9 +12,7 @@ import sys
 import time
 import re
 import numpy as np
-
-remote_ip = "129.129.130.210" # should match the instrument IP address
-port = 3000 # the port number of the instrument service
+print(id(data))
 pattern = re.compile(r'[-+]?\d*\.\d+|\d+')
 
 # Socket connection
@@ -31,7 +29,7 @@ def SocketConnect():
         #Connect to remote server
         s.connect((data.ip, data.port))
     except socket.error:
-        print('failed to connect to ip ' + remote_ip)
+        print('failed to connect to ip ' + data.ip)
     return s
 
 # Socket send command
@@ -107,20 +105,16 @@ def getMean(inDataMatrix):
 s = SocketConnect()
 SocketSend(s, data.startAmp)
 SocketRec(s, data.setGain)
-mean1 = 0.0
-mean2 = 0.0
-mean3 = 0.0
-mean4 = 0.0
-meanSum = 0.0
+
 while True:
     currentString = SocketRec(s, data.getCurrentString)
     currentData = getDataFromString(currentString)
-    data.currents = getAllValsFromData(currentData)
-    mean1 = getMean(data.currents[0])
-    mean2 = getMean(data.currents[1])
-    mean3 = getMean(data.currents[2])
-    mean4 = getMean(data.currents[3])
-    meanSum = mean1 + mean2 + mean3 + mean4
+    currents = getAllValsFromData(currentData)
+    data.mean1 = getMean(currents[0])
+    data.mean2 = getMean(currents[1])
+    data.mean3 = getMean(currents[2])
+    data.mean4 = getMean(currents[3])
+    data.meanSum = data.mean1 + data.mean2 + data.mean3 + data.mean4
 
 SocketClose(s)
 
