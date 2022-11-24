@@ -26,10 +26,9 @@ def SocketConnect():
         sys.exit()
     try:
         #Connect to remote server
-        s.connect((remote_ip, port))
+        s.connect((data.ip, data.port))
     except socket.error:
         print('failed to connect to ip ' + remote_ip)
-    print('Communication success')
     return s
 
 # Socket send command
@@ -53,14 +52,16 @@ def SocketQuery(Sock, cmd):
 def SocketClose(Sock):
     #close the socket
     Sock.close()
+    print('Socket closed')
     time.sleep(1)
-#-------------------------------------------------------------------------
+    sys.exit()#-------------------------------------------------------------------------
 
 s = SocketConnect()
-val = SocketQuery(s, data.startAmp)
+print(data.startAmp)
+val = SocketQuery(s, b'setdac:50')
 print(val) 
 time.sleep(1)
-val = SocketQuery(s, data.setGain)
+val = SocketQuery(s, b'setgainmode:8;4;2;2')
 print(val)
 SocketClose(s)
 
