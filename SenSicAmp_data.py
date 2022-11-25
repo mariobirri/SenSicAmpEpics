@@ -5,8 +5,6 @@ Created on Thu Nov 24 09:56:41 2022
 @author: birri_m
 """
 
-import time
-
 # global strings
 ip = "129.129.130.210"
 port = 3000
@@ -27,5 +25,7 @@ meanSum = 0.0
 
 
 
-kx = 1.0
-ky = 1.0
+global kx
+kx  = 1.0
+global ky 
+ky= 1.0
