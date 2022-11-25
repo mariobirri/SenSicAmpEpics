@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 from pcaspy import Driver, SimpleServer
 import SenSicAmp_data as data 
+import SenSicAmp_Socket
 
-print(id(data))
+import threading
+
 #Epics Stuff
 prefix = 'X05LA-ES-SENSIC:'
 pvdb = {
@@ -37,6 +39,11 @@ class myDriver(Driver):
     global data
     def  __init__(self):
         super(myDriver, self).__init__()
+        # start the communication socket
+        t = threading.Thread(target=SenSicAmp_Socket.main)
+	# change T to daemon
+	t.setDaemon(True)
+	t.start()
 
     def read(self, reason):
         if reason == 'CUR1': value = data.mean1

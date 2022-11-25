@@ -12,7 +12,6 @@ import sys
 import time
 import re
 import numpy as np
-print(id(data))
 pattern = re.compile(r'[-+]?\d*\.\d+|\d+')
 
 # Socket connection
@@ -69,7 +68,7 @@ def SocketClose(Sock):
     print('Socket closed')
     time.sleep(1)
     sys.exit()
-    
+
 # transform String to data    
 #-----------------------------------------
 
@@ -100,19 +99,24 @@ def getMean(inDataMatrix):
     value = np.mean(inDataMatrix, dtype = np.float64)
     return value
 
+# main function
 #----------------------------------
+def main():
+    s = SocketConnect()
+    SocketSend(s, data.startAmp)
+    SocketRec(s, data.setGain)
 
-s = SocketConnect()
-SocketSend(s, data.startAmp)
-SocketRec(s, data.setGain)
+    while True:
+        currentString = SocketRec(s, data.getCurrentString)
+        currentData = getDataFromString(currentString)
+        currents = getAllValsFromData(currentData)
+        data.mean1 = getMean(currents[0])
+        data.mean2 = getMean(currents[1])
+        data.mean3 = getMean(currents[2])
+        data.mean4 = getMean(currents[3])
+        data.meanSum = data.mean1 + data.mean2 + data.mean3 + data.mean4
+    SocketClose(s)
 
-while True:
-    currentString = SocketRec(s, data.getCurrentString)
-    currentData = getDataFromString(currentString)
-    currents = getAllValsFromData(currentData)
-    data.mean1 = getMean(currents[0])
-    data.mean2 = getMean(currents[1])
-    data.mean3 = getMean(currents[2])
-    data.mean4 = getMean(currents[3])
-    data.meanSum = data.mean1 + data.mean2 + data.mean3 + data.mean4
-SocketClose(s)
+
+if __name__ == '__main__':
+    main()
