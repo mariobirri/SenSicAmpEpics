@@ -8,7 +8,6 @@ Created on Thu Nov 24 09:56:41 2022
 #!/usr/bin/env python
 import socket # for sockets
 import SenSicAmp_data as data
-import SenSicAmp_data
 import sys
 import time
 import re
@@ -116,6 +115,4 @@ while True:
     data.mean3 = getMean(currents[2])
     data.mean4 = getMean(currents[3])
     data.meanSum = data.mean1 + data.mean2 + data.mean3 + data.mean4
-    SenSicAmp_data.kx = 10
-    print(SenSicAmp_data.kx)
 SocketClose(s)

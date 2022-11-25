@@ -1,12 +1,12 @@
-import os
-from multiprocessing import Process
+import subprocess
 
 path = "/home/pi/SenSicAmpEpics/"
-tasks = ['SenSicAmp_epics.py', 'SenSicAmp_Socket.py']
+tasks = ['SenSicAmp_data.py', 'SenSicAmp_epics.py', 'SenSicAmp_Socket.py']
 
-def foo(task):
-    os.system('python ' + path + task)
-
-for task in tasks:
-    p = Process(target=foo, args=(task,))
-    p.start()
+task_processes = [
+    subprocess.Popen(r'python %s\%s' % (path, task), shell=True)
+    for task
+    in tasks
+]
+for task in task_processes:
+    task.wait()
