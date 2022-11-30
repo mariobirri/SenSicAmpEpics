@@ -45,7 +45,7 @@ def SocketSend(Sock, cmd):
 
 # Socket receive command
 #--------------------
-def SocketRec(Sock, cmd):
+def SocketRec(Sock, cmd, len):
     try:
         # Send cmd string
         Sock.sendall(cmd)
@@ -55,7 +55,7 @@ def SocketRec(Sock, cmd):
         #Send failed
         print('Send failed')
         sys.exit()
-    msg = Sock.recv(4*4096)
+    msg = Sock.recv(len)
     #print(reply)
     return msg
 
@@ -104,10 +104,12 @@ def getMean(inDataMatrix):
 def main():
     s = SocketConnect()
     SocketSend(s, data.startAmp)
-    SocketRec(s, data.setGain)
+    SocketRec(s, data.setGain, 1024)
+    bias = data.biasValue
+    biasOn = data.biasOn
 
     while True:
-        currentString = SocketRec(s, data.getCurrentString)
+        currentString = SocketRec(s, data.getCurrentString, 4096*4)
         currentData = getDataFromString(currentString)
         currents = getAllValsFromData(currentData)
         data.mean1 = getMean(currents[0])
@@ -115,6 +117,21 @@ def main():
         data.mean3 = getMean(currents[2])
         data.mean4 = getMean(currents[3])
         data.meanSum = data.mean1 + data.mean2 + data.mean3 + data.mean4
+	data.biasState = SocketRec(s, data.getBiasState, 1024)
+	if bias != data.biasValue:
+		sendValue = data.setBias+str(int(((data.biasValue+21)/42)*65535)).encode()
+		SocketSend(s, sendValue)
+		bias = data.biasValue
+		print(sendValue)
+		print(bias)
+        if biasOn != data.biasOn:
+                if data.biasOn == 1:
+			SocketSend(s, data.setBiasOff)
+		else:
+			SocketSend(s, data.setBiasOn)
+                biasOn = data.biasOn
+                print(data.biasOn)
+
     SocketClose(s)
 
 

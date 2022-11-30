@@ -8,18 +8,19 @@ import threading
 #Epics Stuff
 prefix = 'X05LA-ES-SENSIC:'
 pvdb = {
-    'POSX' :	{'TYPE' : 'int', 'scan' : 0.2, 'unit' : 'um', 'prec' : 10 },
-    'POSY' :	{'TYPE' : 'int', 'scan' : 0.2, 'unit' : 'um', 'prec' : 10 },
-    'CUR1' :	{'TYPE' : 'int', 'scan' : 0.2, 'unit' : 'A', 'prec' : 10 },
-    'CUR2' :	{'TYPE'	: 'int', 'scan' : 0.2, 'unit' : 'A', 'prec' : 10 },
-    'CUR3' :	{'TYPE' : 'int', 'scan' : 0.2, 'unit' : 'A', 'prec' : 10},
-    'CUR4' :	{'TYPE' : 'int', 'scan' : 0.2, 'unit' : 'A', 'prec' : 10},
-    'SUM'  :	{'TYPE' : 'int', 'scan' : 0.2, 'unit' : 'A', 'prec' : 10},
-    'BIAS'  :   {'TYPE' : 'int',  'unit' : 'V', 'prec' : 2},
-    'BIASON'  :   {'TYPE' : 'int', 'scan' : 0.2, 'unit' : ' ', 'prec' : 0},
-    'BIASSTATE'  :   {'TYPE' : 'char', 'count' : 10},
-    'KX'  :	{'TYPE' : 'int', 'scan' : 0.2, 'unit' : ' ', 'prec' : 2},
-    'KY'  :	{'TYPE' : 'int', 'scan' : 0.2, 'unit' : ' ', 'prec' : 2},
+    'POSX' :		{'TYPE' : 'int', 'scan' : 0.1, 'unit' : 'um', 'prec' : 10 },
+    'POSY' :		{'TYPE' : 'int', 'scan' : 0.1, 'unit' : 'um', 'prec' : 10 },
+    'CUR1' :		{'TYPE' : 'int', 'scan' : 0.1, 'unit' : 'A', 'prec' : 10 },
+    'CUR2' :		{'TYPE'	: 'int', 'scan' : 0.1, 'unit' : 'A', 'prec' : 10 },
+    'CUR3' :		{'TYPE' : 'int', 'scan' : 0.1, 'unit' : 'A', 'prec' : 10},
+    'CUR4' :		{'TYPE' : 'int', 'scan' : 0.1, 'unit' : 'A', 'prec' : 10},
+    'SUM'  :		{'TYPE' : 'int', 'scan' : 0.1, 'unit' : 'A', 'prec' : 10},
+    'BIAS'  :   	{'TYPE' : 'int', 'scan' : 0.5, 'unit' : 'V', 'prec' : 2},
+    'BIASON'  :   	{'TYPE' : 'int', 'scan' : 0.5, 'unit' : ' ', 'prec' : 0},
+    'BIASSTATE'  :   	{'TYPE' : 'char','scan' : 0.5, 'count' : 10},
+    'KX'  :		{'TYPE' : 'int', 'scan' : 0.5, 'unit' : ' ', 'prec' : 2},
+    'KY'  :		{'TYPE' : 'int', 'scan' : 0.5, 'unit' : ' ', 'prec' : 2},
+    'NUMTOMEAN'  :     	{'TYPE' : 'int', 'unit' : ' ', 'prec' : 0},
 }
 
 def getPosX(valueArr):
@@ -55,8 +56,10 @@ class myDriver(Driver):
         elif reason == 'POSY': value = getPosY([data.mean1, data.mean2, data.mean3, data.mean4, data.meanSum])
         elif reason == 'KX': value = data.kx
         elif reason == 'KY': value = data.ky
-        elif reason == 'BIASSTATE': value = ''
-        else: value = self.getParam(reason)
+        elif reason == 'BIASSTATE': value = data.biasState
+        elif reason == 'BIAS': value = data.biasValue
+        elif reason == 'BIASON': value = data.biasOn
+	else: value = self.getParam(reason)
         return value
 
 
@@ -65,6 +68,8 @@ class myDriver(Driver):
 
         if reason == 'KX': data.kx = value
         elif reason == 'KY': data.ky = value
+	elif reason == 'BIAS': data.biasValue = value
+	elif reason == 'BIASON': data.biasOn = value
         if status:
            self.setParam(reason, value)
 

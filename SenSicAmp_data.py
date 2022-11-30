@@ -17,6 +17,15 @@ startAmp = b'setdac:50'
 setGain = b'setgainmode:8;4;2;2'
 getCurrentString = b'startacqc:' + str(numOfDataPerRead).encode() 
 
+#bias
+getBiasState = b'biasstatus'
+biasState = 'init'
+biasValue = 0.0
+biasOn = 0
+setBias = b'setdac:'
+setBiasOn = b'biason:'
+setBiasOff = b'biasoff:'
+
 #ch1, ch2 .. sum
 currents = [[]]
 
