@@ -104,9 +104,10 @@ def getMean(inDataMatrix):
 def main():
     s = SocketConnect()
     SocketSend(s, data.startAmp)
+    SocketSend(s, data.setBiasOff)
     SocketRec(s, data.setGain, 1024)
     bias = data.biasValue
-    biasOn = data.biasOn
+    biasOn = 0
 
     while True:
         currentString = SocketRec(s, data.getCurrentString, 4096*4)
@@ -118,17 +119,18 @@ def main():
         data.mean4 = getMean(currents[3])
         data.meanSum = data.mean1 + data.mean2 + data.mean3 + data.mean4
 	data.biasState = SocketRec(s, data.getBiasState, 1024)
+
 	if bias != data.biasValue:
 		sendValue = data.setBias+str(int(((data.biasValue+21)/42)*65535)).encode()
 		SocketSend(s, sendValue)
 		bias = data.biasValue
-		print(sendValue)
-		print(bias)
+		data.biasOn = 1
+
         if biasOn != data.biasOn:
                 if data.biasOn == 1:
-			SocketSend(s, data.setBiasOff)
-		else:
 			SocketSend(s, data.setBiasOn)
+		else:
+			SocketSend(s, data.setBiasOff)
                 biasOn = data.biasOn
                 print(data.biasOn)
 

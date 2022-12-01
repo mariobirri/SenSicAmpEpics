@@ -13,7 +13,7 @@ ip = "129.129.130.210"
 port = 3000
 numOfDataPerRead = 200
 
-startAmp = b'setdac:50'
+startAmp = b'setdac:32767'
 setGain = b'setgainmode:8;4;2;2'
 getCurrentString = b'startacqc:' + str(numOfDataPerRead).encode() 
 
