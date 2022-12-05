@@ -1,0 +1,1495 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>965</width>
+    <height>961</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="caThermo" name="cathermo">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>150</y>
+     <width>61</width>
+     <height>94</height>
+    </rect>
+   </property>
+   <property name="lowerBound">
+    <double>-0.000002000000000</double>
+   </property>
+   <property name="upperBound">
+    <double>0.000002000000000</double>
+   </property>
+   <property name="maxValue">
+    <double>0.000002000000000</double>
+   </property>
+   <property name="minValue">
+    <double>-0.000002000000000</double>
+   </property>
+   <property name="channel" stdset="0">
+    <string notr="true">X05LA-ES-SENSIC:CUR1</string>
+   </property>
+   <property name="look">
+    <enum>caThermo::ChannelV</enum>
+   </property>
+   <property name="foreground">
+    <color alpha="200">
+     <red>85</red>
+     <green>255</green>
+     <blue>0</blue>
+    </color>
+   </property>
+   <property name="precision">
+    <number>5</number>
+   </property>
+   <property name="scaleValueEnabled">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="caThermo" name="cathermo_2">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>150</y>
+     <width>61</width>
+     <height>94</height>
+    </rect>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="lowerBound">
+    <double>-0.000002000000000</double>
+   </property>
+   <property name="upperBound">
+    <double>0.000002000000000</double>
+   </property>
+   <property name="scalePosition">
+    <enum>QwtThermoMarker::RightScale</enum>
+   </property>
+   <property name="maxValue">
+    <double>0.000002000000000</double>
+   </property>
+   <property name="minValue">
+    <double>-0.000002000000000</double>
+   </property>
+   <property name="channel" stdset="0">
+    <string notr="true">X05LA-ES-SENSIC:CUR2</string>
+   </property>
+   <property name="look">
+    <enum>caThermo::ChannelV</enum>
+   </property>
+   <property name="foreground">
+    <color alpha="200">
+     <red>0</red>
+     <green>255</green>
+     <blue>0</blue>
+    </color>
+   </property>
+   <property name="precision">
+    <number>5</number>
+   </property>
+   <property name="formatType">
+    <enum>caThermo::decimal</enum>
+   </property>
+   <property name="scaleValueEnabled">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="caThermo" name="cathermo_3">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>270</y>
+     <width>61</width>
+     <height>94</height>
+    </rect>
+   </property>
+   <property name="lowerBound">
+    <double>-0.000002000000000</double>
+   </property>
+   <property name="upperBound">
+    <double>0.000002000000000</double>
+   </property>
+   <property name="scalePosition">
+    <enum>QwtThermoMarker::RightScale</enum>
+   </property>
+   <property name="maxValue">
+    <double>0.000002000000000</double>
+   </property>
+   <property name="minValue">
+    <double>-0.000002000000000</double>
+   </property>
+   <property name="channel" stdset="0">
+    <string notr="true">X05LA-ES-SENSIC:CUR4</string>
+   </property>
+   <property name="look">
+    <enum>caThermo::ChannelV</enum>
+   </property>
+   <property name="foreground">
+    <color alpha="200">
+     <red>0</red>
+     <green>255</green>
+     <blue>0</blue>
+    </color>
+   </property>
+   <property name="precision">
+    <number>5</number>
+   </property>
+   <property name="formatType">
+    <enum>caThermo::decimal</enum>
+   </property>
+   <property name="scaleValueEnabled">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="caThermo" name="cathermo_4">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>270</y>
+     <width>61</width>
+     <height>94</height>
+    </rect>
+   </property>
+   <property name="lowerBound">
+    <double>-0.000002000000000</double>
+   </property>
+   <property name="upperBound">
+    <double>0.000002000000000</double>
+   </property>
+   <property name="maxValue">
+    <double>0.000002000000000</double>
+   </property>
+   <property name="minValue">
+    <double>-0.000002000000000</double>
+   </property>
+   <property name="channel" stdset="0">
+    <string notr="true">X05LA-ES-SENSIC:CUR3</string>
+   </property>
+   <property name="look">
+    <enum>caThermo::ChannelV</enum>
+   </property>
+   <property name="foreground">
+    <color alpha="200">
+     <red>0</red>
+     <green>255</green>
+     <blue>0</blue>
+    </color>
+   </property>
+   <property name="precision">
+    <number>5</number>
+   </property>
+   <property name="scaleValueEnabled">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="caThermo" name="cathermo_5">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>150</y>
+     <width>81</width>
+     <height>211</height>
+    </rect>
+   </property>
+   <property name="scalePosition">
+    <enum>QwtThermoMarker::RightScale</enum>
+   </property>
+   <property name="maxValue">
+    <double>0.000008000000000</double>
+   </property>
+   <property name="minValue">
+    <double>-0.000008000000000</double>
+   </property>
+   <property name="channel" stdset="0">
+    <string notr="true">X05LA-ES-SENSIC:SUM</string>
+   </property>
+   <property name="look">
+    <enum>caThermo::ChannelV</enum>
+   </property>
+   <property name="foreground">
+    <color alpha="200">
+     <red>0</red>
+     <green>255</green>
+     <blue>0</blue>
+    </color>
+   </property>
+   <property name="colorMode">
+    <enum>caThermo::Static</enum>
+   </property>
+   <property name="precision">
+    <number>5</number>
+   </property>
+   <property name="formatType">
+    <enum>caThermo::decimal</enum>
+   </property>
+   <property name="scaleValueEnabled">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="caLineDraw" name="calinedraw">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>490</y>
+     <width>100</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="channel" stdset="0">
+    <string>X05LA-ES-SENSIC:POSX</string>
+   </property>
+   <property name="precision">
+    <number>2</number>
+   </property>
+   <property name="precisionMode">
+    <enum>caLineDraw::User</enum>
+   </property>
+  </widget>
+  <widget class="caLineDraw" name="calinedraw_2">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>520</y>
+     <width>100</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="channel" stdset="0">
+    <string>X05LA-ES-SENSIC:POSY</string>
+   </property>
+   <property name="precision">
+    <number>2</number>
+   </property>
+   <property name="precisionMode">
+    <enum>caLineDraw::User</enum>
+   </property>
+  </widget>
+  <widget class="QwtTextLabel" name="TextLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>490</y>
+     <width>100</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="plainText">
+    <string>PosX</string>
+   </property>
+  </widget>
+  <widget class="QwtTextLabel" name="TextLabel_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>520</y>
+     <width>100</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="plainText">
+    <string>PosY</string>
+   </property>
+  </widget>
+  <widget class="QwtTextLabel" name="TextLabel_3">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>120</y>
+     <width>100</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="plainText">
+    <string>CH1</string>
+   </property>
+  </widget>
+  <widget class="QwtTextLabel" name="TextLabel_4">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>120</y>
+     <width>100</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="plainText">
+    <string>CH2</string>
+   </property>
+  </widget>
+  <widget class="QwtTextLabel" name="TextLabel_5">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>370</y>
+     <width>100</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="plainText">
+    <string>CH3</string>
+   </property>
+  </widget>
+  <widget class="QwtTextLabel" name="TextLabel_6">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>370</y>
+     <width>100</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="plainText">
+    <string>CH4</string>
+   </property>
+  </widget>
+  <widget class="QwtTextLabel" name="TextLabel_7">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>120</y>
+     <width>100</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="plainText">
+    <string>SUM</string>
+   </property>
+  </widget>
+  <widget class="caStripPlot" name="castripplot">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>200</y>
+     <width>481</width>
+     <height>171</height>
+    </rect>
+   </property>
+   <property name="Title" stdset="0">
+    <string notr="true">Current</string>
+   </property>
+   <property name="TitleX">
+    <string notr="true">Time</string>
+   </property>
+   <property name="TitleY">
+    <string notr="true">Current [A]</string>
+   </property>
+   <property name="channels" stdset="0">
+    <string>X05LA-ES-SENSIC:CUR1;X05LA-ES-SENSIC:CUR2;X05LA-ES-SENSIC:CUR3;X05LA-ES-SENSIC:CUR4;X05LA-ES-SENSIC:SUM;</string>
+   </property>
+   <property name="units">
+    <enum>caStripPlot::Minute</enum>
+   </property>
+   <property name="numberOfXticks" stdset="0">
+    <number>2</number>
+   </property>
+   <property name="YAxisScaling" stdset="0">
+    <enum>caStripPlot::autoScale</enum>
+   </property>
+   <property name="YaxisLimitsMax_1">
+    <double>1.500000000000000</double>
+   </property>
+   <property name="YaxisLimitsMin_1">
+    <double>-1.500000000000000</double>
+   </property>
+   <property name="YaxisLimitsMax_2">
+    <double>1.500000000000000</double>
+   </property>
+   <property name="YaxisLimitsMin_2">
+    <double>-1.500000000000000</double>
+   </property>
+   <property name="YaxisLimitsMax_3">
+    <double>1.500000000000000</double>
+   </property>
+   <property name="YaxisLimitsMin_3">
+    <double>-1.500000000000000</double>
+   </property>
+   <property name="YaxisLimitsMax_4">
+    <double>1.500000000000000</double>
+   </property>
+   <property name="YaxisLimitsMin_4">
+    <double>-1.500000000000000</double>
+   </property>
+   <property name="YaxisLimitsMax_5">
+    <double>6.000000000000000</double>
+   </property>
+   <property name="YaxisLimitsMin_5">
+    <double>-6.000000000000000</double>
+   </property>
+   <property name="YaxisLimitsMax_6">
+    <double>6.000000000000000</double>
+   </property>
+   <property name="YaxisLimitsMin_6">
+    <double>-6.000000000000000</double>
+   </property>
+   <property name="XaxisEnabled">
+    <bool>false</bool>
+   </property>
+   <property name="YaxisEnabled">
+    <bool>true</bool>
+   </property>
+   <property name="LegendEnabled">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="caCartesianPlot" name="cacartesianplot">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>570</y>
+     <width>901</width>
+     <height>381</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::NoFrame</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <property name="Title" stdset="0">
+    <string notr="true">Position</string>
+   </property>
+   <property name="TitleX">
+    <string notr="true">pos x </string>
+   </property>
+   <property name="TitleY">
+    <string notr="true">pos y</string>
+   </property>
+   <property name="channels_1" stdset="0">
+    <string>X05LA-ES-SENSIC:POSX;X05LA-ES-SENSIC:POSY</string>
+   </property>
+   <property name="Style_1">
+    <enum>caCartesianPlot::Dots</enum>
+   </property>
+   <property name="symbol_1">
+    <enum>caCartesianPlot::XCross</enum>
+   </property>
+   <property name="color_1">
+    <color>
+     <red>255</red>
+     <green>0</green>
+     <blue>0</blue>
+    </color>
+   </property>
+   <property name="plotMode">
+    <enum>caCartesianPlot::PlotNPointsAndStop</enum>
+   </property>
+   <property name="countNumOrChannel" stdset="0">
+    <string notr="true"/>
+   </property>
+   <property name="triggerChannel" stdset="0">
+    <string notr="true"/>
+   </property>
+   <property name="XaxisScaling" stdset="0">
+    <enum>caCartesianPlot::User</enum>
+   </property>
+   <property name="YaxisScaling" stdset="0">
+    <enum>caCartesianPlot::User</enum>
+   </property>
+   <property name="XaxisLimits">
+    <string>-5;5</string>
+   </property>
+   <property name="YaxisLimits">
+    <string>-5;5</string>
+   </property>
+   <property name="LegendEnabled">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="caLineDraw" name="calinedraw_3">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>100</y>
+     <width>100</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="channel" stdset="0">
+    <string>X05LA-ES-SENSIC:CUR1</string>
+   </property>
+   <property name="precision">
+    <number>2</number>
+   </property>
+   <property name="precisionMode">
+    <enum>caLineDraw::User</enum>
+   </property>
+   <property name="limitsMode">
+    <enum>caLineDraw::Channel</enum>
+   </property>
+   <property name="formatType">
+    <enum>caLineDraw::exponential</enum>
+   </property>
+  </widget>
+  <widget class="caLineDraw" name="calinedraw_4">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>100</y>
+     <width>100</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="channel" stdset="0">
+    <string>X05LA-ES-SENSIC:CUR2</string>
+   </property>
+   <property name="precision">
+    <number>2</number>
+   </property>
+   <property name="precisionMode">
+    <enum>caLineDraw::User</enum>
+   </property>
+   <property name="formatType">
+    <enum>caLineDraw::exponential</enum>
+   </property>
+  </widget>
+  <widget class="caLineDraw" name="calinedraw_5">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>390</y>
+     <width>100</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="channel" stdset="0">
+    <string>X05LA-ES-SENSIC:CUR3</string>
+   </property>
+   <property name="precision">
+    <number>2</number>
+   </property>
+   <property name="precisionMode">
+    <enum>caLineDraw::User</enum>
+   </property>
+   <property name="formatType">
+    <enum>caLineDraw::exponential</enum>
+   </property>
+  </widget>
+  <widget class="caLineDraw" name="calinedraw_6">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>390</y>
+     <width>100</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="channel" stdset="0">
+    <string>X05LA-ES-SENSIC:CUR4</string>
+   </property>
+   <property name="precision">
+    <number>2</number>
+   </property>
+   <property name="precisionMode">
+    <enum>caLineDraw::User</enum>
+   </property>
+   <property name="formatType">
+    <enum>caLineDraw::exponential</enum>
+   </property>
+  </widget>
+  <widget class="caLineDraw" name="calinedraw_7">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>490</y>
+     <width>100</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="channel" stdset="0">
+    <string>X05LA-ES-SENSIC:KX</string>
+   </property>
+   <property name="precision">
+    <number>2</number>
+   </property>
+   <property name="precisionMode">
+    <enum>caLineDraw::User</enum>
+   </property>
+  </widget>
+  <widget class="caTextEntry" name="catextentry">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>490</y>
+     <width>100</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="channel" stdset="0">
+    <string notr="true">X05LA-ES-SENSIC:KX</string>
+   </property>
+  </widget>
+  <widget class="caTextEntry" name="catextentry_2">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>520</y>
+     <width>100</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="channel" stdset="0">
+    <string notr="true">X05LA-ES-SENSIC:KY</string>
+   </property>
+  </widget>
+  <widget class="caLineDraw" name="calinedraw_8">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>520</y>
+     <width>100</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="channel" stdset="0">
+    <string>X05LA-ES-SENSIC:KY</string>
+   </property>
+   <property name="precision">
+    <number>2</number>
+   </property>
+   <property name="precisionMode">
+    <enum>caLineDraw::User</enum>
+   </property>
+  </widget>
+  <widget class="QwtTextLabel" name="TextLabel_8">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>470</y>
+     <width>100</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="plainText">
+    <string>K</string>
+   </property>
+  </widget>
+  <widget class="QwtTextLabel" name="TextLabel_9">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>470</y>
+     <width>100</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="plainText">
+    <string>K RBV</string>
+   </property>
+  </widget>
+  <widget class="caLineDraw" name="calinedraw_9">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>390</y>
+     <width>100</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="channel" stdset="0">
+    <string>X05LA-ES-SENSIC:SUM</string>
+   </property>
+   <property name="precision">
+    <number>2</number>
+   </property>
+   <property name="precisionMode">
+    <enum>caLineDraw::User</enum>
+   </property>
+   <property name="formatType">
+    <enum>caLineDraw::exponential</enum>
+   </property>
+  </widget>
+  <widget class="QwtTextLabel" name="TextLabel_10">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>10</y>
+     <width>791</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>20</pointsize>
+    </font>
+   </property>
+   <property name="plainText">
+    <string>SenSiC Amplifier </string>
+   </property>
+  </widget>
+  <widget class="QFrame" name="frame">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>60</y>
+     <width>231</width>
+     <height>131</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::WinPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="caLineDraw" name="calinedraw_11">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>90</y>
+      <width>100</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="channel" stdset="0">
+     <string>X05LA-ES-SENSIC:BIAS</string>
+    </property>
+    <property name="precision">
+     <number>2</number>
+    </property>
+    <property name="precisionMode">
+     <enum>caLineDraw::User</enum>
+    </property>
+   </widget>
+   <widget class="QwtTextLabel" name="TextLabel_11">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>10</y>
+      <width>231</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="plainText">
+     <string>Bias</string>
+    </property>
+   </widget>
+   <widget class="caTextEntry" name="catextentry_3">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>60</y>
+      <width>100</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">X05LA-ES-SENSIC:BIAS</string>
+    </property>
+    <property name="limitsMode">
+     <enum>caLineEdit::User</enum>
+    </property>
+    <property name="maxValue">
+     <double>20.000000000000000</double>
+    </property>
+    <property name="minValue">
+     <double>-20.000000000000000</double>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>60</y>
+      <width>71</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>On</string>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">X05LA-ES-SENSIC:BIASON</string>
+    </property>
+    <property name="label">
+     <string notr="true">On / Off</string>
+    </property>
+    <property name="disableChannel" stdset="0">
+     <string/>
+    </property>
+    <property name="releaseMessage">
+     <string notr="true"/>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_2">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>80</y>
+      <width>71</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Off</string>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">X05LA-ES-SENSIC:BIASON</string>
+    </property>
+    <property name="label">
+     <string notr="true">Off</string>
+    </property>
+    <property name="disableChannel" stdset="0">
+     <string/>
+    </property>
+    <property name="releaseMessage">
+     <string notr="true"/>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caGraphics" name="cagraphics">
+    <property name="geometry">
+     <rect>
+      <x>15</x>
+      <y>55</y>
+      <width>110</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>255</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="fillstyle" stdset="0">
+     <enum>caGraphics::Filled</enum>
+    </property>
+    <property name="visibility">
+     <enum>caGraphics::IfNotZero</enum>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">X05LA-ES-SENSIC:BIASON</string>
+    </property>
+   </widget>
+   <widget class="caLabel" name="calabel">
+    <property name="geometry">
+     <rect>
+      <x>15</x>
+      <y>38</y>
+      <width>110</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>BIAS ON!</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::PlainText</enum>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="fontScaleMode">
+     <enum>ESimpleLabel::WidthAndHeight</enum>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>255</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="visibility">
+     <enum>caLabel::IfNotZero</enum>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">X05LA-ES-SENSIC:BIASON</string>
+    </property>
+   </widget>
+   <zorder>cagraphics</zorder>
+   <zorder>calinedraw_11</zorder>
+   <zorder>TextLabel_11</zorder>
+   <zorder>catextentry_3</zorder>
+   <zorder>camessagebutton</zorder>
+   <zorder>camessagebutton_2</zorder>
+   <zorder>calabel</zorder>
+  </widget>
+  <widget class="QFrame" name="frame_2">
+   <property name="geometry">
+    <rect>
+     <x>710</x>
+     <y>60</y>
+     <width>231</width>
+     <height>131</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::WinPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QwtTextLabel" name="TextLabel_13">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>10</y>
+      <width>231</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="plainText">
+     <string>Communication</string>
+    </property>
+   </widget>
+   <widget class="caTextEntry" name="catextentry_5">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>50</y>
+      <width>40</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">X05LA-ES-SENSIC:IP1</string>
+    </property>
+    <property name="limitsMode">
+     <enum>caLineEdit::User</enum>
+    </property>
+    <property name="minValue">
+     <double>255.000000000000000</double>
+    </property>
+    <property name="formatType">
+     <enum>caLineEdit::decimal</enum>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_5">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>90</y>
+      <width>101</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Connect</string>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">X05LA-ES-SENSIC:CONNECT</string>
+    </property>
+    <property name="label">
+     <string notr="true">Connect</string>
+    </property>
+    <property name="disableChannel" stdset="0">
+     <string/>
+    </property>
+    <property name="releaseMessage">
+     <string notr="true"/>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_6">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>90</y>
+      <width>101</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Disconnect</string>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">X05LA-ES-SENSIC:CONNECT</string>
+    </property>
+    <property name="label">
+     <string notr="true">Disconnect</string>
+    </property>
+    <property name="disableChannel" stdset="0">
+     <string/>
+    </property>
+    <property name="releaseMessage">
+     <string notr="true"/>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caGraphics" name="cagraphics_2">
+    <property name="geometry">
+     <rect>
+      <x>25</x>
+      <y>45</y>
+      <width>189</width>
+      <height>33</height>
+     </rect>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>0</red>
+      <green>170</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="fillstyle" stdset="0">
+     <enum>caGraphics::Filled</enum>
+    </property>
+    <property name="visibility">
+     <enum>caGraphics::IfNotZero</enum>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">X05LA-ES-SENSIC:CONNECTED</string>
+    </property>
+   </widget>
+   <widget class="caTextEntry" name="catextentry_6">
+    <property name="geometry">
+     <rect>
+      <x>75</x>
+      <y>50</y>
+      <width>40</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">X05LA-ES-SENSIC:IP2</string>
+    </property>
+    <property name="limitsMode">
+     <enum>caLineEdit::User</enum>
+    </property>
+    <property name="minValue">
+     <double>255.000000000000000</double>
+    </property>
+    <property name="formatType">
+     <enum>caLineEdit::decimal</enum>
+    </property>
+   </widget>
+   <widget class="caTextEntry" name="catextentry_7">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>50</y>
+      <width>40</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">X05LA-ES-SENSIC:IP3</string>
+    </property>
+    <property name="limitsMode">
+     <enum>caLineEdit::User</enum>
+    </property>
+    <property name="minValue">
+     <double>255.000000000000000</double>
+    </property>
+    <property name="formatType">
+     <enum>caLineEdit::decimal</enum>
+    </property>
+   </widget>
+   <widget class="caTextEntry" name="catextentry_8">
+    <property name="geometry">
+     <rect>
+      <x>165</x>
+      <y>50</y>
+      <width>40</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">X05LA-ES-SENSIC:IP4</string>
+    </property>
+    <property name="limitsMode">
+     <enum>caLineEdit::User</enum>
+    </property>
+    <property name="minValue">
+     <double>255.000000000000000</double>
+    </property>
+    <property name="formatType">
+     <enum>caLineEdit::decimal</enum>
+    </property>
+   </widget>
+   <widget class="caGraphics" name="cagraphics_3">
+    <property name="geometry">
+     <rect>
+      <x>25</x>
+      <y>45</y>
+      <width>189</width>
+      <height>33</height>
+     </rect>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>255</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="fillstyle" stdset="0">
+     <enum>caGraphics::Filled</enum>
+    </property>
+    <property name="visibility">
+     <enum>caGraphics::IfZero</enum>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">X05LA-ES-SENSIC:CONNECTED</string>
+    </property>
+   </widget>
+   <zorder>cagraphics_3</zorder>
+   <zorder>cagraphics_2</zorder>
+   <zorder>TextLabel_13</zorder>
+   <zorder>catextentry_5</zorder>
+   <zorder>camessagebutton_5</zorder>
+   <zorder>camessagebutton_6</zorder>
+   <zorder>catextentry_6</zorder>
+   <zorder>catextentry_7</zorder>
+   <zorder>catextentry_8</zorder>
+  </widget>
+  <widget class="QFrame" name="frame_3">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>60</y>
+     <width>421</width>
+     <height>361</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::WinPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QwtTextLabel" name="TextLabel_14">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>10</y>
+      <width>421</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="plainText">
+     <string>Currents</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="frame_4">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>430</y>
+     <width>421</width>
+     <height>131</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::WinPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QwtTextLabel" name="TextLabel_15">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>10</y>
+      <width>421</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="plainText">
+     <string>Position</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="caStripPlot" name="castripplot_2">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>380</y>
+     <width>241</width>
+     <height>181</height>
+    </rect>
+   </property>
+   <property name="Title" stdset="0">
+    <string notr="true"/>
+   </property>
+   <property name="TitleX">
+    <string notr="true">Time</string>
+   </property>
+   <property name="TitleY">
+    <string notr="true">Current [A]</string>
+   </property>
+   <property name="channels" stdset="0">
+    <string>X05LA-ES-SENSIC:CUR1;X05LA-ES-SENSIC:CUR2;X05LA-ES-SENSIC:CUR3;X05LA-ES-SENSIC:CUR4;X05LA-ES-SENSIC:SUM;</string>
+   </property>
+   <property name="units">
+    <enum>caStripPlot::Second</enum>
+   </property>
+   <property name="numberOfXticks" stdset="0">
+    <number>2</number>
+   </property>
+   <property name="YAxisScaling" stdset="0">
+    <enum>caStripPlot::autoScale</enum>
+   </property>
+   <property name="YaxisLimitsMax_1">
+    <double>1.500000000000000</double>
+   </property>
+   <property name="YaxisLimitsMin_1">
+    <double>-1.500000000000000</double>
+   </property>
+   <property name="YaxisLimitsMax_2">
+    <double>1.500000000000000</double>
+   </property>
+   <property name="YaxisLimitsMin_2">
+    <double>-1.500000000000000</double>
+   </property>
+   <property name="YaxisLimitsMax_3">
+    <double>1.500000000000000</double>
+   </property>
+   <property name="YaxisLimitsMin_3">
+    <double>-1.500000000000000</double>
+   </property>
+   <property name="YaxisLimitsMax_4">
+    <double>1.500000000000000</double>
+   </property>
+   <property name="YaxisLimitsMin_4">
+    <double>-1.500000000000000</double>
+   </property>
+   <property name="YaxisLimitsMax_5">
+    <double>6.000000000000000</double>
+   </property>
+   <property name="YaxisLimitsMin_5">
+    <double>-6.000000000000000</double>
+   </property>
+   <property name="YaxisLimitsMax_6">
+    <double>6.000000000000000</double>
+   </property>
+   <property name="YaxisLimitsMin_6">
+    <double>-6.000000000000000</double>
+   </property>
+   <property name="grid">
+    <bool>true</bool>
+   </property>
+   <property name="XaxisEnabled">
+    <bool>false</bool>
+   </property>
+   <property name="YaxisEnabled">
+    <bool>true</bool>
+   </property>
+   <property name="LegendEnabled">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="caStripPlot" name="castripplot_3">
+   <property name="geometry">
+    <rect>
+     <x>710</x>
+     <y>380</y>
+     <width>231</width>
+     <height>181</height>
+    </rect>
+   </property>
+   <property name="Title" stdset="0">
+    <string notr="true"/>
+   </property>
+   <property name="TitleX">
+    <string notr="true">Time</string>
+   </property>
+   <property name="TitleY">
+    <string notr="true">Current [A]</string>
+   </property>
+   <property name="channels" stdset="0">
+    <string>X05LA-ES-SENSIC:CUR1;X05LA-ES-SENSIC:CUR2;X05LA-ES-SENSIC:CUR3;X05LA-ES-SENSIC:CUR4;X05LA-ES-SENSIC:SUM;</string>
+   </property>
+   <property name="units">
+    <enum>caStripPlot::Second</enum>
+   </property>
+   <property name="period">
+    <double>5.000000000000000</double>
+   </property>
+   <property name="refreshRate" stdset="0">
+    <enum>caStripPlot::High</enum>
+   </property>
+   <property name="numberOfXticks" stdset="0">
+    <number>2</number>
+   </property>
+   <property name="YAxisScaling" stdset="0">
+    <enum>caStripPlot::autoScale</enum>
+   </property>
+   <property name="YaxisLimitsMax_1">
+    <double>1.500000000000000</double>
+   </property>
+   <property name="YaxisLimitsMin_1">
+    <double>-1.500000000000000</double>
+   </property>
+   <property name="YaxisLimitsMax_2">
+    <double>1.500000000000000</double>
+   </property>
+   <property name="YaxisLimitsMin_2">
+    <double>-1.500000000000000</double>
+   </property>
+   <property name="YaxisLimitsMax_3">
+    <double>1.500000000000000</double>
+   </property>
+   <property name="YaxisLimitsMin_3">
+    <double>-1.500000000000000</double>
+   </property>
+   <property name="YaxisLimitsMax_4">
+    <double>1.500000000000000</double>
+   </property>
+   <property name="YaxisLimitsMin_4">
+    <double>-1.500000000000000</double>
+   </property>
+   <property name="YaxisLimitsMax_5">
+    <double>6.000000000000000</double>
+   </property>
+   <property name="YaxisLimitsMin_5">
+    <double>-6.000000000000000</double>
+   </property>
+   <property name="YaxisLimitsMax_6">
+    <double>6.000000000000000</double>
+   </property>
+   <property name="YaxisLimitsMin_6">
+    <double>-6.000000000000000</double>
+   </property>
+   <property name="XaxisEnabled">
+    <bool>false</bool>
+   </property>
+   <property name="YaxisEnabled">
+    <bool>true</bool>
+   </property>
+   <property name="LegendEnabled">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <zorder>frame_3</zorder>
+  <zorder>frame</zorder>
+  <zorder>cathermo</zorder>
+  <zorder>cathermo_2</zorder>
+  <zorder>cathermo_3</zorder>
+  <zorder>cathermo_4</zorder>
+  <zorder>cathermo_5</zorder>
+  <zorder>calinedraw</zorder>
+  <zorder>calinedraw_2</zorder>
+  <zorder>TextLabel</zorder>
+  <zorder>TextLabel_2</zorder>
+  <zorder>TextLabel_3</zorder>
+  <zorder>TextLabel_4</zorder>
+  <zorder>TextLabel_5</zorder>
+  <zorder>TextLabel_6</zorder>
+  <zorder>TextLabel_7</zorder>
+  <zorder>castripplot</zorder>
+  <zorder>cacartesianplot</zorder>
+  <zorder>calinedraw_3</zorder>
+  <zorder>calinedraw_4</zorder>
+  <zorder>calinedraw_5</zorder>
+  <zorder>calinedraw_6</zorder>
+  <zorder>calinedraw_7</zorder>
+  <zorder>catextentry</zorder>
+  <zorder>catextentry_2</zorder>
+  <zorder>calinedraw_8</zorder>
+  <zorder>TextLabel_8</zorder>
+  <zorder>TextLabel_9</zorder>
+  <zorder>calinedraw_9</zorder>
+  <zorder>TextLabel_10</zorder>
+  <zorder>frame_2</zorder>
+  <zorder>frame_4</zorder>
+  <zorder>castripplot_2</zorder>
+  <zorder>castripplot_3</zorder>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QwtPlot</class>
+   <extends>QFrame</extends>
+   <header>qwt_plot.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QwtTextLabel</class>
+   <extends>QFrame</extends>
+   <header>qwt_text_label.h</header>
+  </customwidget>
+  <customwidget>
+   <class>caTextEntry</class>
+   <extends>caLineEdit</extends>
+   <header>caTextEntry</header>
+  </customwidget>
+  <customwidget>
+   <class>caMessageButton</class>
+   <extends>QPushButton</extends>
+   <header>caMessageButton</header>
+  </customwidget>
+  <customwidget>
+   <class>caLabel</class>
+   <extends>QLabel</extends>
+   <header>caLabel</header>
+  </customwidget>
+  <customwidget>
+   <class>caGraphics</class>
+   <extends>QWidget</extends>
+   <header>caGraphics</header>
+  </customwidget>
+  <customwidget>
+   <class>caLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>caLineEdit</header>
+  </customwidget>
+  <customwidget>
+   <class>caThermo</class>
+   <extends>QWidget</extends>
+   <header>caThermo</header>
+  </customwidget>
+  <customwidget>
+   <class>caCartesianPlot</class>
+   <extends>QwtPlot</extends>
+   <header>caCartesianPlot</header>
+  </customwidget>
+  <customwidget>
+   <class>caStripPlot</class>
+   <extends>QwtPlot</extends>
+   <header>caStripPlot</header>
+  </customwidget>
+  <customwidget>
+   <class>caLineDraw</class>
+   <extends>QWidget</extends>
+   <header>caLineDraw</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
