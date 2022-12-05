@@ -9,8 +9,16 @@ import time
 
 
 # global strings
-ip = "129.129.130.210"
+ip1 = 129
+ip2 = 129
+ip3 = 130
+ip4 = 210
 port = 3000
+
+connect = 0
+connected = 0
+conState = ''
+
 numOfDataPerRead = 200
 
 startAmp = b'setdac:32767'

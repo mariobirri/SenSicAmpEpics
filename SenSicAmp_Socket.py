@@ -20,15 +20,18 @@ def SocketConnect():
     try:
         #create an AF_INET, STREAM socket (TCP)
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        print('Socket connected')
+        data.conState = 'Socket connected'
     except socket.error:
-        print('Failed to create socket.')
+        data.conState = 'Failed to create socket.'
         sys.exit()
+
     try:
+	ip = str(data.ip1) + '.' + str(data.ip2) + '.' + str(data.ip3) + '.' + str(data.ip4)
         #Connect to remote server
-        s.connect((data.ip, data.port))
+        s.connect((ip, data.port))
+	data.connected = 1
     except socket.error:
-        print('failed to connect to ip ' + data.ip)
+        data.conState = 'failed to connect to ip ' + data.ip
     return s
 
 # Socket send command
@@ -40,8 +43,8 @@ def SocketSend(Sock, cmd):
         time.sleep(0.1)
     except socket.error:
         #Send failed
-        print('Send failed')
-        sys.exit()
+        data.conState = 'Send failed'
+ #       sys.exit()
 
 # Socket receive command
 #--------------------
@@ -53,7 +56,7 @@ def SocketRec(Sock, cmd, len):
         time.sleep(0.1)
     except socket.error:
         #Send failed
-        print('Send failed')
+        data.conState = 'Send failed'
         sys.exit()
     msg = Sock.recv(len)
     #print(reply)
@@ -65,15 +68,16 @@ def SocketRec(Sock, cmd, len):
 def SocketClose(Sock):
     #close the socket
     Sock.close()
-    print('Socket closed')
+    data.conState = 'Socket closed'
+    data.connected = 0
     time.sleep(1)
-    sys.exit()
+#    sys.exit()
 
-# transform String to data    
+# transform String to data
 #-----------------------------------------
 
 def getDataFromString(inString):
-    if len(inString) > 0: 
+    if len(inString) > 0:
         # Compile a pattern to capture float values
         returnValues = [float(i) for i in pattern.findall(str(inString))]
         return returnValues
@@ -99,42 +103,60 @@ def getMean(inDataMatrix):
     value = np.mean(inDataMatrix, dtype = np.float64)
     return value
 
-# main function
-#----------------------------------
-def main():
-    s = SocketConnect()
+# init amplifier
+#-------------------------------------------
+def init():
+    while True:
+        if data.connect == 1 and data.connected == 0:
+                s = SocketConnect()
+                break
+        else:
+                time.sleep(1)
+
     SocketSend(s, data.startAmp)
     SocketSend(s, data.setBiasOff)
     SocketRec(s, data.setGain, 1024)
+    return s
+
+
+# main function
+#----------------------------------
+def main():
+
+    s = init()
     bias = data.biasValue
     biasOn = 0
-
     while True:
-        currentString = SocketRec(s, data.getCurrentString, 4096*4)
-        currentData = getDataFromString(currentString)
-        currents = getAllValsFromData(currentData)
-        data.mean1 = getMean(currents[0])
-        data.mean2 = getMean(currents[1])
-        data.mean3 = getMean(currents[2])
-        data.mean4 = getMean(currents[3])
-        data.meanSum = data.mean1 + data.mean2 + data.mean3 + data.mean4
-	data.biasState = SocketRec(s, data.getBiasState, 1024)
 
-	if bias != data.biasValue:
-		sendValue = data.setBias+str(int(((data.biasValue+21)/42)*65535)).encode()
-		SocketSend(s, sendValue)
-		bias = data.biasValue
-		data.biasOn = 1
+	if data.connect == 0 and data.connected == 1 and s != None:
+		SocketClose(s)
+	if data.connect == 1 and data.connected == 0:
+		s = SocketConnect()
 
-        if biasOn != data.biasOn:
-                if data.biasOn == 1:
-			SocketSend(s, data.setBiasOn)
-		else:
-			SocketSend(s, data.setBiasOff)
-                biasOn = data.biasOn
-                print(data.biasOn)
+	if data.connected == 1:
+        	currentString = SocketRec(s, data.getCurrentString, 4096*4)
+        	currentData = getDataFromString(currentString)
+        	currents = getAllValsFromData(currentData)
+        	data.mean1 = getMean(currents[0])
+        	data.mean2 = getMean(currents[1])
+        	data.mean3 = getMean(currents[2])
+        	data.mean4 = getMean(currents[3])
+        	data.meanSum = data.mean1 + data.mean2 + data.mean3 + data.mean4
+		data.biasState = SocketRec(s, data.getBiasState, 1024)
 
-    SocketClose(s)
+		if bias != data.biasValue:
+			sendValue = data.setBias+str(int(((data.biasValue+21)/42)*65535)).encode()
+			SocketSend(s, sendValue)
+			bias = data.biasValue
+			data.biasOn = 1
+
+        	if biasOn != data.biasOn:
+                	if data.biasOn == 1:
+				SocketSend(s, data.setBiasOn)
+			else:
+				SocketSend(s, data.setBiasOff)
+                	biasOn = data.biasOn
+                	print(data.biasOn)
 
 
 if __name__ == '__main__':

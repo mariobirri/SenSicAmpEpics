@@ -21,6 +21,15 @@ pvdb = {
     'KX'  :		{'TYPE' : 'int', 'scan' : 0.5, 'unit' : ' ', 'prec' : 2},
     'KY'  :		{'TYPE' : 'int', 'scan' : 0.5, 'unit' : ' ', 'prec' : 2},
     'NUMTOMEAN'  :     	{'TYPE' : 'int', 'unit' : ' ', 'prec' : 0},
+    'CONNECT'  :      {'TYPE' : 'int', 'unit' : ' ', 'prec' : 0},
+    'CONNECTED'  :      {'TYPE' : 'int', 'scan' : 1, 'unit' : ' ', 'prec' : 0},
+    'CONSTATE'  :      {'TYPE' : 'char', 'scan' : 1, 'prec' : 40},
+    'IP1'  :      {'TYPE' : 'int', 'scan' : 1, 'prec' : 0},
+    'IP2'  :      {'TYPE' : 'int', 'scan' : 1, 'prec' : 0},
+    'IP3'  :      {'TYPE' : 'int', 'scan' : 1, 'prec' : 0},
+    'IP4'  :      {'TYPE' : 'int', 'scan' : 1, 'prec' : 0},
+
+
 }
 
 def getPosX(valueArr):
@@ -59,6 +68,13 @@ class myDriver(Driver):
         elif reason == 'BIASSTATE': value = data.biasState
         elif reason == 'BIAS': value = data.biasValue
         elif reason == 'BIASON': value = data.biasOn
+	elif reason == 'CONNECT': value = data.connect
+	elif reason == 'CONNECTED': value = data.connected
+        #elif reason == 'CONSTATE': value = data.conState
+	elif reason == 'IP1': value = data.ip1;
+	elif reason == 'IP2': value = data.ip2;
+	elif reason == 'IP3': value = data.ip3;
+	elif reason == 'IP4': value = data.ip4;
 	else: value = self.getParam(reason)
         return value
 
@@ -70,6 +86,13 @@ class myDriver(Driver):
         elif reason == 'KY': data.ky = value
 	elif reason == 'BIAS': data.biasValue = value
 	elif reason == 'BIASON': data.biasOn = value
+        elif reason == 'CONNECT': data.connect = value
+	elif reason == 'CONNECTED': data.connected = value
+	#elif reason == 'CONSTATE': data.conState = value
+	elif reason == 'IP1': data.ip1 = value
+        elif reason == 'IP2': data.ip2 = value
+        elif reason == 'IP3': data.ip3 = value
+        elif reason == 'IP4': data.ip4 = value
         if status:
            self.setParam(reason, value)
 
