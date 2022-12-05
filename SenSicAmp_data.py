@@ -21,7 +21,7 @@ samples = 200
 
 startAmp = b'setdac:32767'
 setGain = b'setgainmode:8;4;2;2'
-getCurrentString = b'startacqc:' + str(int(samples)).encode() 
+getCurrentString = b'startacqf:' + str(int(samples)).encode() 
 
 #bias
 getBiasState = b'biasstatus'
