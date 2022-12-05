@@ -134,7 +134,8 @@ def main():
 		s = SocketConnect()
 
 	if data.connected == 1:
-        	currentString = SocketRec(s, data.getCurrentString, 4096*4)
+        	currentString = SocketRec(s, data.getCurrentString, 16384)
+		print(data.getCurrentString)
         	currentData = getDataFromString(currentString)
         	currents = getAllValsFromData(currentData)
         	data.mean1 = getMean(currents[0])

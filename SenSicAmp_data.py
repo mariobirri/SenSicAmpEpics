@@ -17,13 +17,11 @@ port = 3000
 
 connect = 0
 connected = 0
-conState = ''
-
-numOfDataPerRead = 200
+samples = 200
 
 startAmp = b'setdac:32767'
 setGain = b'setgainmode:8;4;2;2'
-getCurrentString = b'startacqc:' + str(numOfDataPerRead).encode() 
+getCurrentString = b'startacqc:' + str(int(samples)).encode() 
 
 #bias
 getBiasState = b'biasstatus'
