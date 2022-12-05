@@ -815,7 +815,7 @@
      <string notr="true">X05LA-ES-SENSIC:BIASON</string>
     </property>
     <property name="label">
-     <string notr="true">On</string>
+     <string notr="true">ON</string>
     </property>
     <property name="disableChannel" stdset="0">
      <string/>
