@@ -806,7 +806,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>On</string>
+     <string>ON</string>
     </property>
     <property name="checkable">
      <bool>true</bool>
@@ -837,7 +837,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Off</string>
+     <string>OFF</string>
     </property>
     <property name="checkable">
      <bool>true</bool>
@@ -1398,6 +1398,7 @@
     <bool>false</bool>
    </property>
   </widget>
+  <zorder>frame_4</zorder>
   <zorder>frame_3</zorder>
   <zorder>frame</zorder>
   <zorder>cathermo</zorder>
@@ -1429,7 +1430,6 @@
   <zorder>calinedraw_9</zorder>
   <zorder>TextLabel_10</zorder>
   <zorder>frame_2</zorder>
-  <zorder>frame_4</zorder>
   <zorder>castripplot_2</zorder>
   <zorder>castripplot_3</zorder>
  </widget>
