@@ -17,21 +17,24 @@ pattern = re.compile(r'[-+]?\d*\.\d+|\d+')
 # Socket connection
 #-------------------
 def SocketConnect():
+
     try:
         #create an AF_INET, STREAM socket (TCP)
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         data.conState = 'Socket connected'
     except socket.error:
         data.conState = 'Failed to create socket.'
-        sys.exit()
-
+        #sys.exit()
     try:
-	ip = str(data.ip1) + '.' + str(data.ip2) + '.' + str(data.ip3) + '.' + str(data.ip4)
+	ip = str(int(data.ip1)) + '.' + str(int(data.ip2)) + '.' + str(int(data.ip3)) + '.' + str(int(data.ip4))
         #Connect to remote server
         s.connect((ip, data.port))
 	data.connected = 1
     except socket.error:
-        data.conState = 'failed to connect to ip ' + data.ip
+        data.conState = 'failed to connect to ip ' + ip
+	data.connected = 0
+	time.sleep(1)
+    print(data.conState)
     return s
 
 # Socket send command
@@ -44,7 +47,8 @@ def SocketSend(Sock, cmd):
     except socket.error:
         #Send failed
         data.conState = 'Send failed'
- #       sys.exit()
+	print(data.conState)
+
 
 # Socket receive command
 #--------------------
@@ -57,9 +61,8 @@ def SocketRec(Sock, cmd, len):
     except socket.error:
         #Send failed
         data.conState = 'Send failed'
-        sys.exit()
+
     msg = Sock.recv(len)
-    #print(reply)
     return msg
 
 
@@ -70,8 +73,8 @@ def SocketClose(Sock):
     Sock.close()
     data.conState = 'Socket closed'
     data.connected = 0
-    time.sleep(1)
-#    sys.exit()
+    print(data.conState)
+
 
 # transform String to data
 #-----------------------------------------
@@ -111,7 +114,7 @@ def init():
                 s = SocketConnect()
                 break
         else:
-                time.sleep(1)
+                time.sleep(0.2)
 
     SocketSend(s, data.startAmp)
     SocketSend(s, data.setBiasOff)
@@ -128,10 +131,11 @@ def main():
     biasOn = 0
     while True:
 
+
 	if data.connect == 0 and data.connected == 1 and s != None:
 		SocketClose(s)
 	if data.connect == 1 and data.connected == 0:
-		s = SocketConnect()
+		s = init()
 
 	if data.connected == 1:
         	currentString = SocketRec(s, data.getCurrentString, 16384)
@@ -156,7 +160,6 @@ def main():
 			else:
 				SocketSend(s, data.setBiasOff)
                 	biasOn = data.biasOn
-                	print(data.biasOn)
 
 
 if __name__ == '__main__':

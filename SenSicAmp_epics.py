@@ -90,7 +90,7 @@ class myDriver(Driver):
 	elif reason == 'CONNECTED': data.connected = value
 	#elif reason == 'SAMPLES': data.samples = value; getCurrentString = b'startacqc:' + str(int(data.samples)).encode()
 	#elif reason == 'CONSTATE': data.conState = value
-	elif reason == 'IP1': data.ip1 = value
+	elif reason == 'IP1': data.ip1 = value;
         elif reason == 'IP2': data.ip2 = value
         elif reason == 'IP3': data.ip3 = value
         elif reason == 'IP4': data.ip4 = value
