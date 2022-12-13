@@ -23,6 +23,7 @@ pvdb = {
     #'SAMPLES'  :     	{'TYPE' : 'int', 'unit' : ' ', 'prec' : 0},
     'CONNECT'  :      {'TYPE' : 'int', 'unit' : ' ', 'prec' : 0},
     'CONNECTED'  :      {'TYPE' : 'int', 'scan' : 1, 'unit' : ' ', 'prec' : 0},
+    'FAILEDCON'  :      {'TYPE' : 'int', 'scan' : 1, 'unit' : ' ', 'prec' : 0},
     'IP1'  :      {'TYPE' : 'int', 'scan' : 1, 'prec' : 0},
     'IP2'  :      {'TYPE' : 'int', 'scan' : 1, 'prec' : 0},
     'IP3'  :      {'TYPE' : 'int', 'scan' : 1, 'prec' : 0},
@@ -69,6 +70,7 @@ class myDriver(Driver):
         elif reason == 'BIASON': value = data.biasOn
 	elif reason == 'CONNECT': value = data.connect
 	elif reason == 'CONNECTED': value = data.connected
+        elif reason == 'FAILEDCON': value = data.failedCon
 	#elif reason == 'SAMPLES': value = data.samples
         #elif reason == 'CONSTATE': value = data.conState
 	elif reason == 'IP1': value = data.ip1;

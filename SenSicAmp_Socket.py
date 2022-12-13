@@ -13,6 +13,7 @@ import time
 import re
 import numpy as np
 pattern = re.compile(r'[-+]?\d*\.\d+|\d+')
+s = None
 
 # Socket connection
 #-------------------
@@ -21,6 +22,7 @@ def SocketConnect():
     try:
         #create an AF_INET, STREAM socket (TCP)
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	s.settimeout(5.0)
         data.conState = 'Socket connected'
     except socket.error:
         data.conState = 'Failed to create socket.'
@@ -30,9 +32,11 @@ def SocketConnect():
         #Connect to remote server
         s.connect((ip, data.port))
 	data.connected = 1
+	data.failedCon = 0
     except socket.error:
         data.conState = 'failed to connect to ip ' + ip
 	data.connected = 0
+	data.failedCon = 1
 	time.sleep(1)
     print(data.conState)
     return s
@@ -122,21 +126,32 @@ def init():
     return s
 
 
+# init amplifier
+#-------------------------------------------
+def connection():
+	global s
+	if data.connected == 0:
+		if data.connect == 1:
+			s = SocketConnect()
+#			SocketSend(s, data.startAmp)
+#			SocketSend(s, data.setBiasOff)
+#			SocketRec(s, data.setGain, 1024)
+	else:
+		if data.connect == 0:
+			SocketClose(s)
+			s = None
+
 # main function
 #----------------------------------
 def main():
 
-    s = init()
+    biasOn = data.biasOn
     bias = data.biasValue
-    biasOn = 0
+    while data.connect == 0:
+	time.sleep(0.5)
+
     while True:
-
-
-	if data.connect == 0 and data.connected == 1 and s != None:
-		SocketClose(s)
-	if data.connect == 1 and data.connected == 0:
-		s = init()
-
+	connection()
 	if data.connected == 1:
         	currentString = SocketRec(s, data.getCurrentString, 16384)
         	currentData = getDataFromString(currentString)
